@@ -1,5 +1,28 @@
 # Polymorphic Component
 
+- 너무어렵다
+- 시간나면 한번 더 보기
+- 제네릭 지옥..
+
+- 저 컴포넌트 부분이 실제 Tag가되어 렌더링 된다는거 -> 신기
+```tsx
+export const Text: TextComponent = React.forwardRef(
+  <C extends ElementType = 'span'>({
+    as,
+    color,
+    style,
+    children,
+    ...restProps
+  }: PolymorphicComponentPropsWithRef<C, TextProps>, ref?: PolymorphicRef<C>) => {
+    const Component = as || 'span';
+
+    const internalStyles = color ? { style: { ...style, color }} : {}
+    return <Component {...restProps}  {...internalStyles}>{children}</Component>;
+  }
+)
+```
+
+
 ## Reference
 
 - https://www.udemy.com/course/build-polymorphic-components-with-react-and-typescript/

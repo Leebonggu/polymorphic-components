@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Text } from './components';
 
 function Emphasis({ children } : { children: React.ReactText }) {
@@ -6,13 +6,15 @@ function Emphasis({ children } : { children: React.ReactText }) {
 }
 
 function App() {
+  const ref = useRef<HTMLHeadingElement | null>(null)
+  
   return (
     <>
-      <Text as='h1' color='indigo' style={{ background: 'black' }}>HEllo</Text>
+      <Text as='h1' ref={ref} color='indigo' style={{ background: 'black' }}>HEllo</Text>
       <Text as='button'>Hello</Text>
       <br/>
 
-      <Text as={Emphasis}>Awsome</Text>
+      <Text as={Emphasis} ref={ref}>Awsome</Text>
     </>
   );
 }
